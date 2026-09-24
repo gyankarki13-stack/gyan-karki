@@ -1533,7 +1533,7 @@ function sendOrderToPrinter(){
         return;
     }
 
-    const url = `http://${ip}/StarWebPRNT/SendMessage`;
+    const url = "https://participants-kind-pdas-database.trycloudflare.com/print";
     const xml = buildStarWebPrntXML();
 
     const btn = document.getElementById("sendPrinterBtn");
