@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ジンギスマンセンター | Menu</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --ink:#211C16;
+    --paper:#F7F2E7;
+    --paper-card:#FFFDF8;
+    --indigo:#232C42;
+    --vermillion:#C1392B;
+    --gold:#B98B4E;
+    --line:#E4D9C4;
+}
+
+*{ box-sizing:border-box; }
+
+html{
+    overscroll-behavior-y:none;
+}
+
+body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overscroll-behavior-y:none;
+}
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:30;
+    background:var(--indigo);
+    color:var(--paper);
+    padding:14px 16px 12px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+    transform:translateY(0);
+    transition:transform 0.3s ease;
+}
+
+.logo{
+    max-width:220px;
+    width:70%;
+    max-height:160px;
+    height:auto;
+    display:block;
+    margin:0 auto 10px;
+    border-radius:6px;
+}
+
+header.scrolled{
+    transform:translateY(-100%);
+}
+
+.brand{
+    font-family:"Shippori Mincho",serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:0.04em;
+    margin:0 0 2px;
+}
+
+.brand small{
+    display:block;
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:400;
+    font-size:11px;
+    letter-spacing:0.25em;
+    opacity:0.65;
+    margin-top:4px;
+}
+
+.lang-switch{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin-top:10px;
+    flex-wrap:wrap;
+}
+
+.lang-switch-btn{
+    border:1px solid rgba(247,242,231,0.4);
+    background:transparent;
+    color:var(--paper);
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:11px;
+    letter-spacing:0.04em;
+    cursor:pointer;
+}
+
+.lang-switch-btn.active{
+    background:var(--vermillion);
+    border-color:var(--vermillion);
+    color:#fff;
+    font-weight:600;
+}
+
+.cat-nav, .subcat-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:12px 16px;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    scrollbar-width:none;
+    transition:top 0.3s ease;
+}
+.cat-nav{ z-index:29; }
+.subcat-nav{ z-index:28; background:#EFE6D2; padding:8px 16px; }
+.cat-nav::-webkit-scrollbar, .subcat-nav::-webkit-scrollbar{ display:none; }
+
+.cat-btn{
+    flex:0 0 auto;
+    border:1px solid var(--gold);
+    background:var(--paper-card);
+    color:var(--ink);
+    padding:7px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:500;
+    white-space:nowrap;
+    cursor:pointer;
+    line-height:1.3;
+}
+
+.cat-btn.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--paper);
+}
+
+.subcat-btn{
+    flex:0 0 auto;
+    border:1px solid var(--vermillion);
+    background:transparent;
+    color:var(--vermillion);
+    padding:6px 12px;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+    cursor:pointer;
+    text-align:center;
+    line-height:1.3;
+}
+
+.subcat-btn .sub-jp{
+    display:block;
+    font-size:10px;
+    font-weight:400;
+    opacity:0.85;
+    margin-top:1px;
+}
+
+.subcat-btn.active{
+    background:var(--vermillion);
+    color:#fff;
+}
+
+main{
+    max-width:480px;
+    margin:0 auto;
+    padding:20px 16px 60px;
+    transition:padding-top 0.3s ease;
+    position:relative;
+    z-index:1;
+}
+
+.section-title{
+    font-family:"Shippori Mincho",serif;
+    font-size:19px;
+    font-weight:700;
+    color:var(--indigo);
+    margin:26px 0 12px;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--vermillion);
+    display:inline-block;
+}
+
+.section-title-hero{
+    font-family:"Shippori Mincho",serif;
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+    margin:0 0 16px;
+    padding:22px 16px 16px;
+    border-radius:14px;
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    box-shadow:0 2px 10px rgba(33,28,22,0.15);
+}
+
+.section-title-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:14px;
+    background:linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.1) 70%);
+}
+
+.section-title-hero span{
+    position:relative;
+    z-index:1;
+}
+
+.section-title-hero .jp-sub{
+    display:block;
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:400;
+    font-size:13px;
+    margin-top:2px;
+    opacity:0.9;
+}
+
+.empty-note{
+    font-size:13px;
+    color:#8A8072;
+    padding:10px 2px 20px;
+}
+
+.card{
+    position:relative;
+    background:var(--paper-card);
+    border-radius:14px;
+    margin-bottom:16px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(33,28,22,0.08);
+    display:flex;
+    gap:0;
+}
+
+.card-photo-wrap{
+    position:relative;
+    flex:0 0 118px;
+}
+
+.card-photo-wrap img{
+    width:118px;
+    height:118px;
+    object-fit:cover;
+    display:block;
+}
+
+.photo-placeholder{
+    width:118px;
+    height:118px;
+    background:linear-gradient(135deg, #EFE6D2, #E4D9C4);
+    display:block;
+}
+
+.item-price{
+    font-size:16px;
+    font-weight:700;
+    color:var(--vermillion);
+    margin:0 0 3px;
+    line-height:1.2;
+}
+
+.item-price .vat{
+    font-size:10px;
+    font-weight:500;
+    color:#8A8072;
+    margin-left:4px;
+}
+
+.card-body{
+    flex:1;
+    padding:12px 14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.item-name-primary{
+    font-size:17px;
+    font-weight:700;
+    color:var(--ink);
+    margin:0 0 2px;
+    line-height:1.3;
+}
+
+.item-name-primary.compact{
+    font-size:13.5px;
+    white-space:nowrap;
+    letter-spacing:-0.01em;
+}
+
+.item-detail-primary{
+    font-size:12px;
+    color:#5B5348;
+    margin:0 0 6px;
+    line-height:1.4;
+}
+
+.lang-secondary{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:6px;
+    padding-top:5px;
+    border-top:1px dashed var(--line);
+    font-size:11.5px;
+    color:#8A8072;
+}
+
+.lang-secondary .jp{
+    font-family:"Shippori Mincho",serif;
+    color:var(--indigo);
+    font-size:12.5px;
+}
+
+footer{
+    text-align:center;
+    padding:24px 16px 40px;
+    font-size:11px;
+    color:#8A8072;
+    letter-spacing:0.05em;
+}
+
+@media (min-width:480px){
+    .card-photo-wrap, .card-photo-wrap img, .photo-placeholder{ flex-basis:130px; width:130px; height:130px; }
+}
+
+/* ============================================================
+   ORDERING SYSTEM — add to cart, cart bar, cart/settings modals,
+   toast, and printer receipt styles
+   ============================================================ */
+
+.top-icon-btn{
+    position:fixed;
+    top:14px;
+    z-index:40;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:1px solid rgba(247,242,231,0.4);
+    background:rgba(35,44,66,0.55);
+    color:var(--paper);
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    backdrop-filter:blur(2px);
+}
+#settingsBtn{ right:14px; }
+#langInfoBtn{ display:none; }
+
+.card-body{ position:relative; }
+
+.add-row{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    margin-top:8px;
+}
+
+.add-btn{
+    border:none;
+    background:var(--indigo);
+    color:var(--paper);
+    font-size:12.5px;
+    font-weight:600;
+    padding:7px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    letter-spacing:0.02em;
+}
+.add-btn:active{ transform:scale(0.96); }
+
+.qty-stepper{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--indigo);
+    border-radius:999px;
+    padding:4px 6px;
+}
+.qty-stepper button{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    border:none;
+    background:rgba(247,242,231,0.15);
+    color:var(--paper);
+    font-size:15px;
+    font-weight:700;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.qty-stepper span{
+    color:var(--paper);
+    font-size:13px;
+    font-weight:700;
+    min-width:14px;
+    text-align:center;
+}
+
+.cart-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:39;
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:var(--vermillion);
+    color:#fff;
+    padding:13px 18px;
+    box-shadow:0 -3px 12px rgba(0,0,0,0.2);
+}
+.cart-bar.show{ display:flex; }
+.cart-bar-info{ font-size:13.5px; font-weight:600; line-height:1.35; }
+.cart-bar-info small{ display:block; font-weight:400; opacity:0.85; font-size:11.5px; }
+.cart-bar-btn{
+    border:none;
+    background:#fff;
+    color:var(--vermillion);
+    font-weight:700;
+    font-size:13px;
+    padding:9px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:60;
+    background:rgba(33,28,22,0.45);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+}
+.modal-overlay.show{ display:flex; }
+.modal-sheet{
+    background:var(--paper);
+    width:100%;
+    max-width:480px;
+    max-height:85vh;
+    overflow-y:auto;
+    border-radius:18px 18px 0 0;
+    padding:18px 18px 24px;
+    box-shadow:0 -6px 24px rgba(0,0,0,0.25);
+}
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+.modal-title{
+    font-family:"Shippori Mincho",serif;
+    font-size:18px;
+    font-weight:700;
+    color:var(--indigo);
+    margin:0;
+}
+.modal-close{
+    border:none;
+    background:var(--line);
+    color:var(--ink);
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    font-size:16px;
+    cursor:pointer;
+    line-height:1;
+}
+
+.cart-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+}
+.cart-line-name{
+    flex:1;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.35;
+}
+.cart-line-name .jp{
+    display:block;
+    font-size:11px;
+    font-weight:400;
+    color:#8A8072;
+}
+.cart-line-price{
+    font-size:13px;
+    font-weight:700;
+    color:var(--vermillion);
+    min-width:64px;
+    text-align:right;
+}
+.cart-remove{
+    border:none;
+    background:transparent;
+    color:#8A8072;
+    font-size:17px;
+    cursor:pointer;
+    padding:0 2px;
+}
+.cart-empty{
+    text-align:center;
+    color:#8A8072;
+    font-size:13px;
+    padding:30px 0;
+}
+
+.field-label{
+    font-size:12px;
+    font-weight:600;
+    color:#5B5348;
+    margin:14px 0 5px;
+}
+.field-input{
+    width:100%;
+    border:1px solid var(--line);
+    background:var(--paper-card);
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:14px;
+    color:var(--ink);
+    font-family:inherit;
+    box-sizing:border-box;
+}
+.field-hint{
+    font-size:11px;
+    color:#8A8072;
+    margin-top:5px;
+    line-height:1.5;
+}
+
+.cart-total-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:14px 0 6px;
+    font-weight:700;
+    color:var(--indigo);
+}
+.cart-total-row .total-amount{
+    font-size:19px;
+    color:var(--vermillion);
+}
+
+.order-action-btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:13px;
+    font-size:14.5px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:10px;
+}
+.order-action-btn.primary{ background:var(--vermillion); color:#fff; }
+.order-action-btn.secondary{ background:var(--indigo); color:var(--paper); }
+.order-action-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:26px;
+    transform:translate(-50%, 20px);
+    z-index:80;
+    background:var(--ink);
+    color:var(--paper);
+    padding:11px 20px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:500;
+    opacity:0;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    pointer-events:none;
+    max-width:88%;
+    text-align:center;
+}
+.toast.show{ opacity:1; transform:translate(-50%, 0); }
+
+#receiptPrint{ display:none; }
+
+@media print{
+    header, .cat-nav, .subcat-nav, .cart-bar, .top-icon-btn, footer, main{ display:none !important; }
+    body{ background:#fff; }
+    #receiptPrint{
+        display:block;
+        width:72mm;
+        margin:0 auto;
+        font-family:"Noto Sans JP", monospace;
+        color:#000;
+        font-size:12px;
+        line-height:1.5;
+    }
+    #receiptPrint h1{ font-size:15px; text-align:center; margin:0 0 2px; }
+    #receiptPrint .rp-sub{ text-align:center; font-size:11px; margin:0 0 10px; }
+    #receiptPrint .rp-line{ display:flex; justify-content:space-between; gap:8px; }
+    #receiptPrint .rp-rule{ border-top:1px dashed #000; margin:8px 0; }
+    #receiptPrint .rp-total{ font-weight:700; font-size:13.5px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" alt="Jingisman Center" class="logo">
+    <p class="brand">Jingisman Center
+        <small id="brandSub">Dinner Menu · ディナー メニュー</small>
+    </p>
+    <div class="lang-switch" id="langSwitch"></div>
+</header>
+
+<nav class="cat-nav" id="catNav"></nav>
+<nav class="subcat-nav" id="subcatNav" style="display:none;"></nav>
+
+<button class="top-icon-btn" id="settingsBtn" onclick="openSettings()" title="Printer settings">⚙️</button>
+
+<main id="menuMain"></main>
+
+<footer id="footerText">Scan again anytime · 何度でもスキャンしてください</footer>
+
+<!-- Floating cart bar -->
+<div class="cart-bar" id="cartBar" onclick="openCart()">
+    <div class="cart-bar-info" id="cartBarInfo"></div>
+    <button class="cart-bar-btn" type="button">View Order · 注文へ</button>
+</div>
+
+<!-- Cart / order modal -->
+<div class="modal-overlay" id="cartOverlay">
+    <div class="modal-sheet">
+        <div class="modal-header">
+            <h3 class="modal-title">Your Order <span style="font-weight:400;font-size:13px;">ご注文</span></h3>
+            <button class="modal-close" onclick="closeCart()">✕</button>
+        </div>
+        <div id="cartLines"></div>
+        <div class="cart-total-row">
+            <span>Total · 合計</span>
+            <span class="total-amount" id="cartTotal">¥0</span>
+        </div>
+        <p class="field-label">Table Number · テーブル番号</p>
+        <input type="text" id="tableNumberInput" class="field-input" placeholder="e.g. 12">
+        <button class="order-action-btn primary" id="sendPrinterBtn" onclick="sendOrderToPrinter()">🖨️ Send to Kitchen Printer</button>
+        <p class="field-hint">Sends the order directly over the network to the Star mC-Print3 (needs the printer's IP address set in ⚙️ Settings, and webPRNT enabled on the printer).</p>
+    </div>
+</div>
+
+<!-- Printer settings modal -->
+<div class="modal-overlay" id="settingsOverlay">
+    <div class="modal-sheet">
+        <div class="modal-header">
+            <h3 class="modal-title">Printer Settings</h3>
+            <button class="modal-close" onclick="closeSettings()">✕</button>
+        </div>
+        <p class="field-label">Kitchen Printer IP Address</p>
+        <input type="text" id="printerIpInput" class="field-input" placeholder="e.g. 192.168.1.50">
+        <p class="field-hint">Find this on the printer: print a self-test page, or check its network settings menu. The printer and this device must be on the same Wi-Fi/LAN, and webPRNT must be turned on in the printer's setup page.</p>
+        <p class="field-label">Restaurant Name (on receipt)</p>
+        <input type="text" id="restaurantNameInput" class="field-input" placeholder="Jingisman Center">
+        <button class="order-action-btn primary" onclick="saveSettings()">Save Settings</button>
+        <button class="order-action-btn secondary" onclick="testPrinterConnection()">🔧 Test Print</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Hidden receipt layout used only when printing via the browser -->
+<div id="receiptPrint">
+    <h1 id="rpRestaurantName">Jingisman Center</h1>
+    <p class="rp-sub" id="rpDateTime"></p>
+    <p class="rp-sub" id="rpTable"></p>
+    <div class="rp-rule"></div>
+    <div id="rpLines"></div>
+    <div class="rp-rule"></div>
+    <div class="rp-line rp-total"><span>TOTAL</span><span id="rpTotal">¥0</span></div>
+    <div class="rp-rule"></div>
+    <p class="rp-sub">Thank you! · ありがとうございました</p>
+</div>
+
+<script>
+
+let currentCat    = 0;
+let currentSubcat = 0;
+let primaryLang   = "en";
+
+const displayLanguages = [
+    { code:"en", label:"English" },
+    { code:"zh", label:"中文" },
+    { code:"vi", label:"Tiếng Việt" }
+];
+
+const uiText = {
+    en: { dinnerMenu:"Dinner Menu", scanAgain:"Scan again anytime" },
+    zh: { dinnerMenu:"晚餐菜单", scanAgain:"随时可再次扫描" },
+    vi: { dinnerMenu:"Thực Đơn Bữa Tối", scanAgain:"Quét lại bất cứ lúc nào" }
+};
+
+function updateStaticText(){
+    const t = uiText[primaryLang] || uiText.en;
+    document.getElementById("brandSub").textContent = t.dinnerMenu + " · ディナー メニュー";
+    document.getElementById("footerText").textContent = t.scanAgain + " · 何度でもスキャンしてください";
+}
+
+function renderLangSwitch(){
+    const el = document.getElementById("langSwitch");
+    el.innerHTML = displayLanguages.map(l =>
+        `<button class="lang-switch-btn ${primaryLang===l.code?'active':''}" onclick="setLang('${l.code}')">${l.label}</button>`
+    ).join("");
+}
+
+window.setLang = function(code){
+    primaryLang = code;
+    renderLangSwitch();
+    updateStaticText();
+    renderCatNav();
+    renderSubcatNav();
+    renderMenu();
+};
+let headerCollapsed = false;
+let headerFullHeight = 0;
+
+function measureHeaderHeight(){
+    const header = document.querySelector("header");
+    const wasCollapsed = header.classList.contains("scrolled");
+    header.classList.remove("scrolled");
+    headerFullHeight = header.offsetHeight;
+    if(wasCollapsed) header.classList.add("scrolled");
+}
+
+function updateFixedLayout(){
+    const catNav  = document.getElementById("catNav");
+    const subNav  = document.getElementById("subcatNav");
+
+    const headerH = headerCollapsed ? 0 : headerFullHeight;
+    catNav.style.top = headerH + "px";
+
+    let totalH = headerH + catNav.offsetHeight;
+
+    if(subNav.style.display !== "none"){
+        subNav.style.top = totalH + "px";
+        totalH += subNav.offsetHeight;
+    }
+
+    document.getElementById("menuMain").style.paddingTop = (totalH + 16) + "px";
+
+    // Lock scrolling entirely when there isn't enough content to scroll —
+    // prevents any bounce/rubber-band movement on short tabs (e.g. Drinks)
+    requestAnimationFrame(() => {
+        const scrollableRange = document.documentElement.scrollHeight - window.innerHeight;
+        const shouldLock = scrollableRange < 20;
+        document.documentElement.style.overflow = shouldLock ? "hidden" : "";
+        document.body.style.overflow = shouldLock ? "hidden" : "";
+        if(shouldLock){
+            window.scrollTo(0, 0);
+        }
+    });
+}
+
+window.addEventListener("resize", () => {
+    measureHeaderHeight();
+    updateFixedLayout();
+});
+
+let scrollTicking = false;
+let lastY = 0;
+let lastDirection = 0;
+let accumulatedDelta = 0;
+let lastToggleTime = 0;
+const TOGGLE_DISTANCE = 40;
+const TOGGLE_COOLDOWN = 400;
+
+function handleScroll(){
+    const y = Math.max(0, window.scrollY);
+    const rawDelta = y - lastY;
+    lastY = y;
+
+    if(Math.abs(rawDelta) < 1) return;
+
+    const direction = rawDelta > 0 ? 1 : -1;
+    if(direction !== lastDirection){
+        accumulatedDelta = 0;
+        lastDirection = direction;
+    }
+    accumulatedDelta += rawDelta;
+
+    const now = Date.now();
+    const cooldownOk = (now - lastToggleTime) > TOGGLE_COOLDOWN;
+
+    if(y < 30){
+        if(headerCollapsed){
+            headerCollapsed = false;
+            document.querySelector("header").classList.remove("scrolled");
+            updateFixedLayout();
+            lastToggleTime = now;
+            accumulatedDelta = 0;
+        }
+    } else if(direction === 1 && accumulatedDelta > TOGGLE_DISTANCE && !headerCollapsed && cooldownOk){
+        headerCollapsed = true;
+        document.querySelector("header").classList.add("scrolled");
+        updateFixedLayout();
+        lastToggleTime = now;
+        accumulatedDelta = 0;
+    } else if(direction === -1 && accumulatedDelta < -TOGGLE_DISTANCE && headerCollapsed && cooldownOk){
+        headerCollapsed = false;
+        document.querySelector("header").classList.remove("scrolled");
+        updateFixedLayout();
+        lastToggleTime = now;
+        accumulatedDelta = 0;
+    }
+}
+window.addEventListener("scroll", () => {
+    if(!scrollTicking){
+        requestAnimationFrame(() => {
+            handleScroll();
+            scrollTicking = false;
+        });
+        scrollTicking = true;
+    }
+});
+
+/* ============================================================
+   MENU DATA
+
+   Top-level category:
+     category: { en:"...", jp:"..." }
+     EITHER  items: [ ... ]                (flat list, no sub-tabs)
+     OR      subcategories: [ { name:{en,jp}, items:[...] }, ... ]
+
+   Item block:
+     photo  : image filename in this same folder
+     price  : shown on the price tag
+     en     : { name, detail } — shown large
+     jp     : { name, detail } — shown small below
+   ============================================================ */
+const menuData = [
+    {
+        category:{ en:"Food", jp:"料理", zh:"料理", vi:"Món Ăn" },
+        subcategories:[
+            {
+                name:{ en:"Raw Lamb & Platter", jp:"生ラム＆盛り合わせ", zh:"生羊肉&拼盘", vi:"Cừu Sống & Đĩa Thịt" },
+                items:[
+                    {
+                        photo:"regular-jingisukan.jpg",
+                        price:"¥799",
+                        en:{ name:"Regular Jingisukan (Shoulder)", detail:"" }, jp:{ name:"並　ジンギスカン", detail:"" }, zh:{ name:"普通成吉思汗烤肉（肩肉）", detail:"" }, vi:{ name:"Jingisukan Thường (Vai)", detail:"" }
+                    },
+                    {
+                        photo:"premium-jingisukan.jpg",
+                        price:"¥899",
+                        en:{ name:"Premium Jingisukan (Leg)", detail:"" }, jp:{ name:"上　ジンギスカン", detail:"" }, zh:{ name:"特选成吉思汗烤肉（腿肉）", detail:"" }, vi:{ name:"Jingisukan Cao Cấp (Đùi)", detail:"" }
+                    },
+                    {
+                        photo:"special-premium-jingisukan.jpg",
+                        price:"¥999",
+                        en:{ name:"Special Premium Jingisukan (Shoulder Loin & Shoulder)", detail:"" }, jp:{ name:"特上ジンギスカン", detail:"" }, zh:{ name:"特上成吉思汗烤肉（肩里脊&肩肉）", detail:"" }, vi:{ name:"Jingisukan Đặc Biệt (Thăn Vai & Vai)", detail:"" }
+                    },
+                    {
+                        photo:"lamb-platter-8kinds.jpg",
+                        price:"¥2299",
+                        en:{ name:"Lamb Ultimate Platter (8 kinds)", detail:"" }, jp:{ name:"ラム極み盛り合わせ（8種）", detail:"" }, zh:{ name:"羊肉极致拼盘（8种）", detail:"" }, vi:{ name:"Đĩa Thịt Cừu Tuyệt Đỉnh (8 Loại)", detail:"" }
+                    },
+                    {
+                        photo:"lamb-platter-5kinds.jpg",
+                        price:"¥1499",
+                        en:{ name:"Lamb Platter (5 kinds)", detail:"" }, jp:{ name:"ラム盛り合わせ（5種）", detail:"" }, zh:{ name:"羊肉拼盘（5种）", detail:"" }, vi:{ name:"Đĩa Thịt Cừu (5 Loại)", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥1199",
+                        en:{ name:"Mutton Fillet", detail:"" }, jp:{ name:"マトンヒレ", detail:"" }, zh:{ name:"羊里脊肉", detail:"" }, vi:{ name:"Thăn Cừu", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥1399",
+                        en:{ name:"Lamb Tongue & Beef Tongue", detail:"" }, jp:{ name:"ラムタン＆牛タン", detail:"" }, zh:{ name:"羊舌&牛舌", detail:"" }, vi:{ name:"Lưỡi Cừu & Lưỡi Bò", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥1299",
+                        en:{ name:"Beef, Pork & Chicken Platter", detail:"" }, jp:{ name:"牛豚鶏盛り合わせ", detail:"" }, zh:{ name:"牛猪鸡拼盘", detail:"" }, vi:{ name:"Đĩa Bò, Heo & Gà", detail:"" }
+                    },
+                    {
+                        photo:"lamb-chop.jpg",
+                        price:"¥699",
+                        en:{ name:"Lamb Chop", detail:"" }, jp:{ name:"ラムチョップ", detail:"" }, zh:{ name:"羊排", detail:"" }, vi:{ name:"Sườn Cừu", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥1199",
+                        en:{ name:"Mutton Loin", detail:"" }, jp:{ name:"マトンロース", detail:"" }, zh:{ name:"羊腰肉", detail:"" }, vi:{ name:"Thăn Lưng Cừu", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥899",
+                        en:{ name:"Yukhoe (Raw Tartare)", detail:"" }, jp:{ name:"ユッケ", detail:"" }, zh:{ name:"生拌牛肉（生牛肉塔塔）", detail:"" }, vi:{ name:"Yukhoe (Tartare Sống)", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥999",
+                        en:{ name:"Seared Mutton Fillet", detail:"" }, jp:{ name:"マトンヒレたたき", detail:"" }, zh:{ name:"炙烤羊里脊", detail:"" }, vi:{ name:"Thăn Cừu Áp Chảo", detail:"" }
+                    }
+
+                    /* add more Raw Lamb & Platter items here */
+
+                ]
+            },
+            {
+                name:{ en:"Yakiniku (Grilled)", jp:"焼肉", zh:"烤肉", vi:"Yakiniku (Nướng)" },
+                items:[
+                    {
+                        photo:"",
+                        price:"¥799",
+                        en:{ name:"Lamb Tongue", detail:"" }, jp:{ name:"ラムタン", detail:"" }, zh:{ name:"羊舌", detail:"" }, vi:{ name:"Lưỡi Cừu", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥799",
+                        en:{ name:"Lamb Neck", detail:"" }, jp:{ name:"ラムせせり", detail:"" }, zh:{ name:"羊颈肉", detail:"" }, vi:{ name:"Cổ Cừu", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥799",
+                        en:{ name:"Lamb Heart", detail:"" }, jp:{ name:"ラムハツ", detail:"" }, zh:{ name:"羊心", detail:"" }, vi:{ name:"Tim Cừu", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥799",
+                        en:{ name:"Lamb Rump", detail:"" }, jp:{ name:"ラムランプ", detail:"" }, zh:{ name:"羊臀肉", detail:"" }, vi:{ name:"Mông Cừu", detail:"" }
+                    },
+                    {
+                        photo:"beef-tongue.jpg",
+                        price:"¥899",
+                        en:{ name:"Beef Tongue", detail:"" }, jp:{ name:"牛タン", detail:"" }, zh:{ name:"牛舌", detail:"" }, vi:{ name:"Lưỡi Bò", detail:"" }
+                    },
+                    {
+                        photo:"beef-harami.jpg",
+                        price:"¥899",
+                        en:{ name:"Beef Harami (Skirt Steak)", detail:"" }, jp:{ name:"牛ハラミ", detail:"" }, zh:{ name:"牛横膈膜肉（哈拉米）", detail:"" }, vi:{ name:"Bò Harami (Thịt Bụng)", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥699",
+                        en:{ name:"Pork Toro (Fatty Jowl)", detail:"" }, jp:{ name:"豚トロ", detail:"" }, zh:{ name:"猪颊肉（大トロ）", detail:"" }, vi:{ name:"Má Heo Béo (Pork Toro)", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥699",
+                        en:{ name:"Pork Kalbi (Short Rib)", detail:"" }, jp:{ name:"豚カルビー", detail:"" }, zh:{ name:"猪排骨（卡尔比）", detail:"" }, vi:{ name:"Sườn Heo Kalbi", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥699",
+                        en:{ name:"Pork Sausage", detail:"" }, jp:{ name:"チョリソー", detail:"" }, zh:{ name:"猪肉香肠", detail:"" }, vi:{ name:"Xúc Xích Heo", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥699",
+                        en:{ name:"Chicken Cartilage (Yagen)", detail:"" }, jp:{ name:"鶏やげん", detail:"" }, zh:{ name:"鸡软骨", detail:"" }, vi:{ name:"Sụn Gà", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥699",
+                        en:{ name:"Chicken Neck", detail:"" }, jp:{ name:"鶏せせり", detail:"" }, zh:{ name:"鸡颈肉", detail:"" }, vi:{ name:"Cổ Gà", detail:"" }
+                    }
+
+                    /* add more Yakiniku items here */
+
+                ]
+            },
+            {
+                name:{ en:"Quick Items", jp:"すぐです", zh:"快手小菜", vi:"Món Nhanh" },
+                items:[
+                    { photo:"", price:"¥399", en:{ name:"Edamame", detail:"Boiled Soybean with Salt" }, jp:{ name:"枝豆", detail:"" }, zh:{ name:"毛豆", detail:"" }, vi:{ name:"Đậu Nành Nhật (Edamame)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Chilled Tomato", detail:"" }, jp:{ name:"冷やしトマト", detail:"" }, zh:{ name:"冰镇番茄", detail:"" }, vi:{ name:"Cà Chua Lạnh", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Shiokara (Salted Seafood)", detail:"" }, jp:{ name:"塩辛", detail:"" }, zh:{ name:"盐辛（腌渍海鲜）", detail:"" }, vi:{ name:"Shiokara (Hải Sản Muối)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Plum & Kelp Cucumber", detail:"" }, jp:{ name:"梅昆布きゅうり", detail:"" }, zh:{ name:"梅子昆布黄瓜", detail:"" }, vi:{ name:"Dưa Chuột Mơ & Rong Biển Kelp", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Plum Zha Cai", detail:"" }, jp:{ name:"梅ザーサイ", detail:"" }, zh:{ name:"梅子榨菜", detail:"" }, vi:{ name:"Zha Cai Vị Mơ", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Cold Tofu (Hiyayakko)", detail:"" }, jp:{ name:"冷奴", detail:"" }, zh:{ name:"冷豆腐", detail:"" }, vi:{ name:"Đậu Hũ Lạnh (Hiyayakko)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Pickled Shallot (Rakkyo)", detail:"" }, jp:{ name:"らっきょ", detail:"" }, zh:{ name:"腌薤（辣韭）", detail:"" }, vi:{ name:"Hành Tím Muối (Rakkyo)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Spicy Bamboo Shoots", detail:"" }, jp:{ name:"ピリ辛メンマ", detail:"" }, zh:{ name:"辣味竹笋", detail:"" }, vi:{ name:"Măng Cay", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Bean Sprout Namul", detail:"" }, jp:{ name:"もやしナムル", detail:"" }, zh:{ name:"豆芽拌菜（纳姆）", detail:"" }, vi:{ name:"Nộm Giá Đỗ (Namul)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Salted Kelp Green Pepper", detail:"" }, jp:{ name:"塩昆布ピーマン", detail:"" }, zh:{ name:"盐昆布青椒", detail:"" }, vi:{ name:"Ớt Chuông Xanh Rong Biển Muối", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Homemade Seasoned Egg", detail:"" }, jp:{ name:"自家製味玉", detail:"" }, zh:{ name:"自制调味蛋", detail:"" }, vi:{ name:"Trứng Ướp Gia Vị Tự Làm", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Mountain Yam in Wasabi Soy Sauce", detail:"" }, jp:{ name:"山芋わさび醤油ずけ", detail:"" }, zh:{ name:"山药芥末酱油", detail:"" }, vi:{ name:"Khoai Mài Sốt Wasabi Tương", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Green Chili Pepper (Soy Sauce Pickled)", detail:"" }, jp:{ name:"青唐辛子醤油漬け", detail:"" }, zh:{ name:"青辣椒酱油渍", detail:"" }, vi:{ name:"Ớt Xanh Ngâm Tương", detail:"" } }
+                ]
+            },
+            {
+                name:{ en:"Specialty", jp:"こだわり", zh:"招牌菜", vi:"Đặc Sản" },
+                items:[
+                    { photo:"", price:"¥899", en:{ name:"Beef Omasum (Senmai)", detail:"" }, jp:{ name:"知牛センマイ", detail:"" }, zh:{ name:"牛百叶", detail:"" }, vi:{ name:"Dạ Dày Bò (Senmai)", detail:"" } },
+                    { photo:"", price:"¥499", en:{ name:"Green Onion Salted Chicken Liver", detail:"" }, jp:{ name:"ネギ塩鶏レバー", detail:"" }, zh:{ name:"葱盐鸡肝", detail:"" }, vi:{ name:"Gan Gà Muối Hành Lá", detail:"" } },
+                    { photo:"", price:"¥599", en:{ name:"Motsunabe", detail:"" }, jp:{ name:"おばあちゃんもつ煮", detail:"" }, zh:{ name:"内脏火锅（motsu煮）", detail:"" }, vi:{ name:"Lẩu Nội Tạng (Motsunabe)", detail:"" } },
+                    { photo:"", price:"¥599", en:{ name:"Jingisman Potato Salad", detail:"" }, jp:{ name:"ジンギスマンポテトサラダ", detail:"" }, zh:{ name:"成吉思曼土豆沙拉", detail:"" }, vi:{ name:"Salad Khoai Tây Jingisman", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Omoni's Kimchi", detail:"" }, jp:{ name:"オモニのキムチ", detail:"" }, zh:{ name:"妈妈泡菜", detail:"" }, vi:{ name:"Kim Chi Của Omoni", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Changja (Korean Fermented Cod)", detail:"" }, jp:{ name:"チャンジャ", detail:"" }, zh:{ name:"明太鱼肠（韩式）", detail:"" }, vi:{ name:"Changja (Ruột Cá Minh Thái Hàn Quốc)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Korean Seaweed (Gim)", detail:"" }, jp:{ name:"韓国のり", detail:"" }, zh:{ name:"韩式海苔", detail:"" }, vi:{ name:"Rong Biển Hàn Quốc (Gim)", detail:"" } }
+                ]
+            },
+            {
+                name:{ en:"Fried Foods", jp:"揚げ物", zh:"炸物", vi:"Món Chiên" },
+                items:[
+                    { photo:"", price:"¥499", en:{ name:"French Fries", detail:"" }, jp:{ name:"フライドポテト", detail:"" }, zh:{ name:"炸薯条", detail:"" }, vi:{ name:"Khoai Tây Chiên", detail:"" } },
+                    { photo:"shiokara-mentaiko-potato.jpg", price:"¥599", en:{ name:"Shiokara & Mentaiko Potato", detail:"" }, jp:{ name:"塩辛明太子ジャガイモ", detail:"" }, zh:{ name:"盐辛明太子薯条", detail:"" }, vi:{ name:"Khoai Tây Shiokara & Mentaiko", detail:"" } },
+                    { photo:"", price:"¥499", en:{ name:"Fried Chicken Cartilage", detail:"" }, jp:{ name:"鶏軟骨唐揚げ", detail:"" }, zh:{ name:"炸鸡软骨", detail:"" }, vi:{ name:"Sụn Gà Chiên", detail:"" } },
+                    { photo:"", price:"¥499", en:{ name:"Fried Tofu (Agedashi)", detail:"" }, jp:{ name:"揚げ豆腐", detail:"" }, zh:{ name:"炸豆腐（揚出し豆腐）", detail:"" }, vi:{ name:"Đậu Hũ Chiên (Agedashi)", detail:"" } },
+                    { photo:"", price:"¥599", en:{ name:"Fried Chicken (Karaage)", detail:"" }, jp:{ name:"鶏の唐揚げ", detail:"" }, zh:{ name:"日式炸鸡（唐扬）", detail:"" }, vi:{ name:"Gà Chiên Karaage", detail:"" } },
+                    { photo:"", price:"¥499", en:{ name:"Garlic Fries", detail:"" }, jp:{ name:"ニンニクフライド", detail:"" }, zh:{ name:"蒜香薯条", detail:"" }, vi:{ name:"Khoai Tây Chiên Tỏi", detail:"" } }
+                ]
+            },
+            {
+                name:{ en:"Rice", jp:"ライス", zh:"米饭", vi:"Cơm" },
+                items:[
+                    { photo:"", price:"¥199", en:{ name:"Rice (Small)", detail:"" }, jp:{ name:"ライス小", detail:"" }, zh:{ name:"米饭（小）", detail:"" }, vi:{ name:"Cơm (Nhỏ)", detail:"" } },
+                    { photo:"", price:"¥299", en:{ name:"Rice (Medium)", detail:"" }, jp:{ name:"ライス中", detail:"" }, zh:{ name:"米饭（中）", detail:"" }, vi:{ name:"Cơm (Vừa)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Rice (Large)", detail:"" }, jp:{ name:"ライス大", detail:"" }, zh:{ name:"米饭（大）", detail:"" }, vi:{ name:"Cơm (Lớn)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Egg on Rice (TKG)", detail:"" }, jp:{ name:"卵かけてライス", detail:"" }, zh:{ name:"鸡蛋拌饭", detail:"" }, vi:{ name:"Cơm Trứng Sống (TKG)", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Jingisukan Special Rice (JSG)", detail:"" }, jp:{ name:"ジンギス専用ライス", detail:"" }, zh:{ name:"成吉思汗特制米饭", detail:"" }, vi:{ name:"Cơm Đặc Biệt Jingisukan (JSG)", detail:"" } }
+                ]
+            },
+            {
+                name:{ en:"Dessert", jp:"デザート", zh:"甜点", vi:"Tráng Miệng" },
+                items:[
+                    { photo:"", price:"¥299", en:{ name:"Jingis Ice Cream Monaka", detail:"" }, jp:{ name:"ジンギスアイス中", detail:"" }, zh:{ name:"成吉思最中冰淇淋", detail:"" }, vi:{ name:"Kem Monaka Jingis", detail:"" } },
+                    { photo:"", price:"¥399", en:{ name:"Seasonal Ice Cream", detail:"" }, jp:{ name:"季節アイス", detail:"" }, zh:{ name:"季节限定冰淇淋", detail:"" }, vi:{ name:"Kem Theo Mùa", detail:"" } },
+                    { photo:"", price:"¥499", en:{ name:"Vanilla Ice Cream", detail:"" }, jp:{ name:"バニラアイス", detail:"" }, zh:{ name:"香草冰淇淋", detail:"" }, vi:{ name:"Kem Vani", detail:"" } }
+                ]
+            },
+            {
+                name:{ en:"Recommended", jp:"おすすめ", zh:"推荐", vi:"Đề Xuất" },
+                items:[
+                    /* add items here */
+                ]
+            }
+        ]
+    },
+    {
+        category:{ en:"Drinks (Single Item)", jp:"ドリンク（単品）", zh:"饮品（单品）", vi:"Đồ Uống (Riêng Lẻ)" },
+        subcategories:[
+            {
+                name:{ en:"Beer", jp:"ビール", zh:"啤酒", vi:"Bia" },
+                items:[
+                    {
+                        photo:"beer.jpg",
+                        price:"¥599",
+                        en:{ name:"Draft Beer", detail:"Premium Malt" }, jp:{ name:"生ビール", detail:"" }, zh:{ name:"生啤酒", detail:"" }, vi:{ name:"Bia Tươi", detail:"" }
+                    },
+                    {
+                        photo:"sapporo-beer.jpg",
+                        price:"¥599",
+                        en:{ name:"Bottled Beer (Sapporo)", detail:"" }, jp:{ name:"瓶ビール", detail:"" }, zh:{ name:"瓶装啤酒（Sapporo）", detail:"" }, vi:{ name:"Bia Chai (Sapporo)", detail:"" }
+                    }
+
+                    /* add more Beer items here */
+
+                ]
+            },
+            {
+                name:{ en:"Sour", jp:"サワー", zh:"沙瓦", vi:"Sour" },
+                items:[
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Highball", detail:"" }, jp:{ name:"ハイボール", detail:"" }, zh:{ name:"Highball（威士忌苏打）", detail:"" }, vi:{ name:"Highball", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Lemon Sour", detail:"" }, jp:{ name:"レモンサワー", detail:"" }, zh:{ name:"柠檬沙瓦", detail:"" }, vi:{ name:"Chanh Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Oolong Hai", detail:"" }, jp:{ name:"ウーロンハイ", detail:"" }, zh:{ name:"乌龙茶酒", detail:"" }, vi:{ name:"Ô Long Hai", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Green Tea Hai", detail:"" }, jp:{ name:"緑茶ハイ", detail:"" }, zh:{ name:"绿茶酒", detail:"" }, vi:{ name:"Trà Xanh Hai", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Corn Tea Hai", detail:"" }, jp:{ name:"コーン茶ハイ", detail:"" }, zh:{ name:"玉米茶酒", detail:"" }, vi:{ name:"Trà Ngô Hai", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Jasmine Tea Hai", detail:"" }, jp:{ name:"ジャスミン茶ハイ", detail:"" }, zh:{ name:"茉莉花茶酒", detail:"" }, vi:{ name:"Trà Lài Hai", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Hojicha Hai", detail:"" }, jp:{ name:"ほうじ茶ハイ", detail:"" }, zh:{ name:"焙茶酒", detail:"" }, vi:{ name:"Trà Hojicha Hai", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Melon Sour", detail:"" }, jp:{ name:"メロンサワー", detail:"" }, zh:{ name:"蜜瓜沙瓦", detail:"" }, vi:{ name:"Dưa Lưới Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Haskap Sour", detail:"" }, jp:{ name:"ハスカップサワー", detail:"" }, zh:{ name:"蓝莓忍冬果沙瓦", detail:"" }, vi:{ name:"Haskap Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Fresh-Squeezed Lemon Sour", detail:"" }, jp:{ name:"生搾りレモンサワー", detail:"" }, zh:{ name:"鲜榨柠檬沙瓦", detail:"" }, vi:{ name:"Chanh Vắt Tươi Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Umeboshi Sour", detail:"" }, jp:{ name:"梅干しサワー", detail:"" }, zh:{ name:"梅干沙瓦", detail:"" }, vi:{ name:"Mơ Muối Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥380",
+                        en:{ name:"Gin Soda", detail:"" }, jp:{ name:"ジンソーダ", detail:"" }, zh:{ name:"金汤力苏打", detail:"" }, vi:{ name:"Gin Soda", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥399",
+                        en:{ name:"Tako-Hai", detail:"" }, jp:{ name:"タコハイ", detail:"" }, zh:{ name:"Tako-Hai（烧酒苏打）", detail:"" }, vi:{ name:"Tako-Hai", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Energy Sour", detail:"" }, jp:{ name:"エナジーサワー", detail:"" }, zh:{ name:"能量饮料沙瓦", detail:"" }, vi:{ name:"Energy Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Acerola Sour", detail:"" }, jp:{ name:"アセロラサワー", detail:"" }, zh:{ name:"针叶樱桃沙瓦", detail:"" }, vi:{ name:"Acerola Sour", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥450",
+                        en:{ name:"Secret Sour (Mystery Flavor)", detail:"" }, jp:{ name:"シークレットサワー", detail:"" }, zh:{ name:"神秘沙瓦（隐藏口味）", detail:"" }, vi:{ name:"Sour Bí Mật (Vị Bí Ẩn)", detail:"" }
+                    }
+
+                    /* add more Sour items here */
+
+                ]
+            },
+            {
+                name:{ en:"Soft Drinks", jp:"ソフトドリンク", zh:"软饮料", vi:"Nước Ngọt" },
+                items:[
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Oolong Tea", detail:"" }, jp:{ name:"ウーロン茶", detail:"" }, zh:{ name:"乌龙茶", detail:"" }, vi:{ name:"Trà Ô Long", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Green Tea", detail:"" }, jp:{ name:"緑茶", detail:"" }, zh:{ name:"绿茶", detail:"" }, vi:{ name:"Trà Xanh", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Jasmine Tea", detail:"" }, jp:{ name:"ジャスミン茶", detail:"" }, zh:{ name:"茉莉花茶", detail:"" }, vi:{ name:"Trà Lài", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Hojicha", detail:"" }, jp:{ name:"ほうじ茶", detail:"" }, zh:{ name:"焙茶", detail:"" }, vi:{ name:"Trà Hojicha", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Corn Tea", detail:"" }, jp:{ name:"コーン茶", detail:"" }, zh:{ name:"玉米茶", detail:"" }, vi:{ name:"Trà Ngô", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Coca-Cola", detail:"" }, jp:{ name:"コーラ", detail:"" }, zh:{ name:"可口可乐", detail:"" }, vi:{ name:"Coca-Cola", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Ginger Ale", detail:"" }, jp:{ name:"ジンジャーエール", detail:"" }, zh:{ name:"姜汁汽水", detail:"" }, vi:{ name:"Nước Ngọt Gừng", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Calpis", detail:"" }, jp:{ name:"カルピス", detail:"" }, zh:{ name:"可尔必思", detail:"" }, vi:{ name:"Calpis", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"¥299",
+                        en:{ name:"Orange Juice", detail:"" }, jp:{ name:"オレンジジュース", detail:"" }, zh:{ name:"橙汁", detail:"" }, vi:{ name:"Nước Cam", detail:"" }
+                    },
+                    {
+                        photo:"",
+                        price:"Free",
+                        en:{ name:"Water", detail:"" }, jp:{ name:"水", detail:"" }, zh:{ name:"水", detail:"" }, vi:{ name:"Nước Lọc", detail:"" }
+                    }
+
+                    /* add more Soft Drinks items here */
+
+                ]
+            }
+        ]
+    },
+    {
+        category:{ en:"All-You-Can-Drink Plan", jp:"飲み放題", zh:"无限畅饮套餐", vi:"Gói Uống Thả Ga" },
+        items:[
+            {
+                photo:"",
+                price:"¥600",
+                en:{ name:"All-You-Can-Drink (1 Hour)", detail:"Please ask staff for menu" }, jp:{ name:"600円飲み放題（1時間）", detail:"詳細はスタッフへ" }, zh:{ name:"无限畅饮（1小时）", detail:"" }, vi:{ name:"Uống Thả Ga (1 Giờ)", detail:"" }
+            },
+            {
+                photo:"",
+                price:"¥1480",
+                en:{ name:"All-You-Can-Drink Premium (1 Hour)", detail:"Please ask staff for menu", compact:true },
+                jp:{ name:"1480円飲み放題", detail:"詳細はスタッフへ" },
+                zh:{ name:"无限畅饮高级版（1小时）", detail:"" },
+                vi:{ name:"Uống Thả Ga Cao Cấp (1 Giờ)", detail:"" }
+            }
+
+            /* add more Drinks items here */
+
+        ]
+    }
+];
+
+/* ============================================================
+   RENDER — no need to edit below this line
+   ============================================================ */
+
+function renderCatNav(){
+    const nav = document.getElementById("catNav");
+    let html = "";
+    menuData.forEach((section, idx) => {
+        const label = section.category[primaryLang] || section.category.en;
+        html += `<button class="cat-btn ${currentCat===idx?'active':''}" onclick="setCat(${idx})">${label} ${section.category.jp}</button>`;
+    });
+    nav.innerHTML = html;
+}
+
+function renderSubcatNav(){
+    const subnav = document.getElementById("subcatNav");
+    const section = menuData[currentCat];
+
+    if(!section.subcategories){
+        subnav.style.display = "none";
+        subnav.innerHTML = "";
+        return;
+    }
+
+    subnav.style.display = "flex";
+    let html = "";
+    section.subcategories.forEach((sub, idx) => {
+        const label = sub.name[primaryLang] || sub.name.en;
+        html += `<button class="subcat-btn ${currentSubcat===idx?'active':''}" onclick="setSubcat(${idx})">${label}<span class="sub-jp">${sub.name.jp}</span></button>`;
+    });
+    subnav.innerHTML = html;
+}
+
+function renderMenu(){
+    const main = document.getElementById("menuMain");
+    const section = menuData[currentCat];
+    let html = "";
+
+    let title, items, subName;
+
+    if(section.subcategories){
+        const sub = section.subcategories[currentSubcat];
+        title = `${sub.name[primaryLang] || sub.name.en} <span style="font-weight:400;font-size:14px;">${sub.name.jp}</span>`;
+        items = sub.items;
+        subName = sub.name.en;
+    } else {
+        title = `${section.category[primaryLang] || section.category.en} <span style="font-weight:400;font-size:14px;">${section.category.jp}</span>`;
+        items = section.items;
+        subName = "";
+    }
+
+    html += `<h2 class="section-title">${title}</h2>`;
+
+    if(items.length === 0){
+        html += `<p class="empty-note">Items coming soon · 準備中です</p>`;
+    }
+
+    const subIdxForKey = section.subcategories ? currentSubcat : "x";
+
+    items.forEach((item, itemIdx) => {
+        const t = item[primaryLang] || item.en;
+        const photoHtml = item.photo
+            ? `<img src="${item.photo}" alt="${t.name}">`
+            : `<div class="photo-placeholder"></div>`;
+
+        const key = `${currentCat}-${subIdxForKey}-${itemIdx}`;
+        const qty = cart[key] ? cart[key].qty : 0;
+        const addControlHtml = qty > 0
+            ? `<div class="qty-stepper">
+                    <button onclick="changeQty('${key}', -1)">−</button>
+                    <span>${qty}</span>
+                    <button onclick="changeQty('${key}', 1)">+</button>
+               </div>`
+            : `<button class="add-btn" onclick="addToCart('${key}')">+ Add</button>`;
+
+        html += `
+            <div class="card">
+                <div class="card-photo-wrap">
+                    ${photoHtml}
+                </div>
+                <div class="card-body">
+                    <p class="item-price">${item.price}${item.price !== "Free" ? ' <span class="vat">+VAT</span>' : ''}</p>
+                    <p class="item-name-primary${t.compact ? ' compact' : ''}">${t.name}</p>
+                    <p class="item-detail-primary">${t.detail}</p>
+                    <div class="lang-secondary">
+                        <span class="jp">${item.jp.name}</span>
+                    </div>
+                    <div class="add-row">${addControlHtml}</div>
+                </div>
+            </div>`;
+    });
+
+    main.innerHTML = html;
+}
+
+/* ============================================================
+   ORDERING CART
+   ============================================================ */
+
+let cart = {}; // key -> { item, qty, catIdx, subIdx, itemIdx }
+
+function getItemByKey(key){
+    const [catIdx, subIdx, itemIdx] = key.split("-");
+    const section = menuData[Number(catIdx)];
+    const items = section.subcategories ? section.subcategories[Number(subIdx)].items : section.items;
+    return items[Number(itemIdx)];
+}
+
+function addToCart(key){
+    if(!cart[key]){
+        cart[key] = { item: getItemByKey(key), qty: 0 };
+    }
+    cart[key].qty += 1;
+    renderMenu();
+    renderCartBar();
+    showToast("Added to order · 追加しました");
+}
+
+function changeQty(key, delta){
+    if(!cart[key]) return;
+    cart[key].qty += delta;
+    if(cart[key].qty <= 0){
+        delete cart[key];
+    }
+    renderMenu();
+    renderCartBar();
+    if(document.getElementById("cartOverlay").classList.contains("show")){
+        renderCartLines();
+    }
+}
+
+function cartCount(){
+    return Object.values(cart).reduce((sum, c) => sum + c.qty, 0);
+}
+
+function priceToNumber(priceStr){
+    if(!priceStr || priceStr === "Free") return 0;
+    return Number(String(priceStr).replace(/[^\d.]/g, "")) || 0;
+}
+
+function cartTotal(){
+    return Object.values(cart).reduce((sum, c) => sum + priceToNumber(c.item.price) * c.qty, 0);
+}
+
+function formatYen(n){
+    return "¥" + n.toLocaleString("en-US");
+}
+
+function renderCartBar(){
+    const bar = document.getElementById("cartBar");
+    const count = cartCount();
+    if(count === 0){
+        bar.classList.remove("show");
+        return;
+    }
+    bar.classList.add("show");
+    document.getElementById("cartBarInfo").innerHTML =
+        `${count} item${count > 1 ? "s" : ""} · <small>${formatYen(cartTotal())} (+VAT)</small>`;
+}
+
+function renderCartLines(){
+    const wrap = document.getElementById("cartLines");
+    const keys = Object.keys(cart);
+
+    if(keys.length === 0){
+        wrap.innerHTML = `<p class="cart-empty">Your order is empty · 注文はまだありません</p>`;
+        document.getElementById("cartTotal").textContent = formatYen(0);
+        document.getElementById("sendPrinterBtn").disabled = true;
+        return;
+    }
+
+    document.getElementById("sendPrinterBtn").disabled = false;
+
+    let html = "";
+    keys.forEach(key => {
+        const c = cart[key];
+        const t = c.item[primaryLang] || c.item.en;
+        const lineTotal = priceToNumber(c.item.price) * c.qty;
+        html += `
+            <div class="cart-line">
+                <div class="cart-line-name">${c.qty} × ${t.name}<span class="jp">${c.item.jp.name}</span></div>
+                <div class="cart-line-price">${formatYen(lineTotal)}</div>
+                <button class="cart-remove" onclick="removeFromCart('${key}')">✕</button>
+            </div>`;
+    });
+    wrap.innerHTML = html;
+    document.getElementById("cartTotal").textContent = formatYen(cartTotal()) + " (+VAT)";
+}
+
+function removeFromCart(key){
+    delete cart[key];
+    renderMenu();
+    renderCartBar();
+    renderCartLines();
+}
+
+function openCart(){
+    renderCartLines();
+    document.getElementById("cartOverlay").classList.add("show");
+}
+function closeCart(){
+    document.getElementById("cartOverlay").classList.remove("show");
+}
+
+function openSettings(){
+    document.getElementById("printerIpInput").value = localStorage.getItem("printerIp") || "192.168.251.232";
+    document.getElementById("restaurantNameInput").value = localStorage.getItem("restaurantName") || "Jingisman Center";
+    document.getElementById("settingsOverlay").classList.add("show");
+}
+function closeSettings(){
+    document.getElementById("settingsOverlay").classList.remove("show");
+}
+function saveSettings(){
+    const ip = document.getElementById("printerIpInput").value.trim();
+    const name = document.getElementById("restaurantNameInput").value.trim() || "Jingisman Center";
+    localStorage.setItem("printerIp", ip);
+    localStorage.setItem("restaurantName", name);
+    showToast("Settings saved · 設定を保存しました");
+    closeSettings();
+}
+
+function showToast(msg){
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+/* ============================================================
+   RECEIPT XML for Star webPRNT (network print to mC-Print3 / MCP31LB)
+   ============================================================ */
+
+function escapeXml(str){
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+}
+
+function buildStarWebPrntXML(){
+    const restaurantName = localStorage.getItem("restaurantName") || "Jingisman Center";
+    const table = document.getElementById("tableNumberInput").value.trim() || "-";
+    const now = new Date();
+    const dateStr = now.toLocaleString();
+
+    let body = "";
+    body += `<text align='center' emphasis='true' width='2' height='2'>${escapeXml(restaurantName)}\\x0a</text>`;
+    body += `<text align='center' width='1' height='1'>${escapeXml(dateStr)}\\x0a</text>`;
+    body += `<text align='center'>Table: ${escapeXml(table)}\\x0a</text>`;
+    body += `<ruledline thickness='thin' width='560'/>`;
+
+    Object.values(cart).forEach(c => {
+        const t = c.item.en;
+        const lineTotal = priceToNumber(c.item.price) * c.qty;
+        const nameLine = `${c.qty} x ${t.name}`;
+        body += `<text align='left'>${escapeXml(nameLine)}\\x0a</text>`;
+        body += `<text align='right'>${escapeXml(formatYen(lineTotal))}\\x0a</text>`;
+    });
+
+    body += `<ruledline thickness='thin' width='560'/>`;
+    body += `<text align='right' emphasis='true' width='2' height='2'>${escapeXml(formatYen(cartTotal()))}\\x0a</text>`;
+    body += `<text align='center'>\\x0aThank you!\\x0a</text>`;
+    body += `<feed line='3'/>`;
+    body += `<cutpaper feed='true' type='partial'/>`;
+
+    return `<root>${body}</root>`;
+}
+
+function sendOrderToPrinter(){
+    const ip = localStorage.getItem("printerIp") || "192.168.251.232";
+    if(cartCount() === 0){
+        showToast("Your order is empty");
+        return;
+    }
+
+    const url = `http://${ip}/StarWebPRNT/SendMessage`;
+    const xml = buildStarWebPrntXML();
+
+    const btn = document.getElementById("sendPrinterBtn");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "text/xml; charset=utf-8" },
+        body: xml
+    })
+    .then(res => {
+        btn.textContent = "🖨️ Send to Kitchen Printer";
+        btn.disabled = false;
+        if(res.ok){
+            showToast("Order sent to printer! · 印刷しました");
+            cart = {};
+            renderMenu();
+            renderCartBar();
+            closeCart();
+        } else {
+            showToast("Printer responded with an error (HTTP " + res.status + ").");
+        }
+    })
+    .catch(() => {
+        btn.textContent = "🖨️ Send to Kitchen Printer";
+        btn.disabled = false;
+        showToast("Could not reach the printer. Make sure your phone is on the restaurant WiFi.");
+    });
+}
+
+function testPrinterConnection(){
+    const ip = document.getElementById("printerIpInput").value.trim();
+    if(!ip){
+        showToast("Enter the printer IP first");
+        return;
+    }
+    const url = `http://${ip}/StarWebPRNT/SendMessage`;
+    const xml = `<root>` +
+        `<text align='center' emphasis='true' width='2' height='2'>Test Print OK\\x0a</text>` +
+        `<text align='center'>${escapeXml(ip)}\\x0a\\x0a</text>` +
+        `<text align='center'>Scan below to confirm QR print:\\x0a</text>` +
+        `<qrcode align='center' model='2' level='0' cell='4'>https://claude.ai</qrcode>` +
+        `<text align='center'>\\x0a\\x0a</text>` +
+        `<cutpaper feed='true' type='partial'/>` +
+        `</root>`;
+
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "text/xml; charset=utf-8" },
+        body: xml
+    })
+    .then(res => showToast(res.ok ? "Test print sent! Check the printer." : "Printer error — check webPRNT is enabled"))
+    .catch(() => showToast("Could not reach the printer at that IP"));
+}
+
+/* ============================================================
+   FALLBACK: print via the browser's normal print dialog
+   (works with any printer already installed/paired on this device)
+   ============================================================ */
+
+function printOrderViaBrowser(){
+    if(cartCount() === 0){
+        showToast("Your order is empty");
+        return;
+    }
+    const restaurantName = localStorage.getItem("restaurantName") || "Jingisman Center";
+    const table = document.getElementById("tableNumberInput").value.trim() || "-";
+
+    document.getElementById("rpRestaurantName").textContent = restaurantName;
+    document.getElementById("rpDateTime").textContent = new Date().toLocaleString();
+    document.getElementById("rpTable").textContent = "Table: " + table;
+
+    let linesHtml = "";
+    Object.values(cart).forEach(c => {
+        const t = c.item.en;
+        const lineTotal = priceToNumber(c.item.price) * c.qty;
+        linesHtml += `<div class="rp-line"><span>${c.qty} x ${t.name}</span><span>${formatYen(lineTotal)}</span></div>`;
+    });
+    document.getElementById("rpLines").innerHTML = linesHtml;
+    document.getElementById("rpTotal").textContent = formatYen(cartTotal());
+
+    window.print();
+}
+
+function resetHeaderState(){
+    headerCollapsed = false;
+    document.querySelector("header").classList.remove("scrolled");
+}
+
+function setCat(cat){
+    currentCat = cat;
+    currentSubcat = 0;
+    window.scrollTo(0, 0);
+    resetHeaderState();
+    renderCatNav();
+    renderSubcatNav();
+    renderMenu();
+    updateFixedLayout();
+}
+
+function setSubcat(sub){
+    currentSubcat = sub;
+    window.scrollTo(0, 0);
+    resetHeaderState();
+    renderSubcatNav();
+    renderMenu();
+    updateFixedLayout();
+}
+
+if(!localStorage.getItem("printerIp")){
+    localStorage.setItem("printerIp", "192.168.251.232");
+}
+
+renderLangSwitch();
+updateStaticText();
+renderCatNav();
+renderSubcatNav();
+renderMenu();
+renderCartBar();
+measureHeaderHeight();
+updateFixedLayout();
+
+const logoImg = document.querySelector(".logo");
+if(logoImg){
+    if(logoImg.complete){
+        measureHeaderHeight();
+        updateFixedLayout();
+    } else {
+        logoImg.addEventListener("load", () => {
+            measureHeaderHeight();
+            updateFixedLayout();
+        });
+    }
+}
+
+if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(() => {
+        measureHeaderHeight();
+        updateFixedLayout();
+    });
+}
+
+</script>
+
+</body>
+</html>
