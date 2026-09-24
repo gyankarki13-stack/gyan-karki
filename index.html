@@ -1566,11 +1566,11 @@ function sendOrderToPrinter(){
 }
 
 function testPrinterConnection(){
-    const ip = document.getElementById("printerIpInput").value.trim();
-    if(!ip){
-        showToast("Enter the printer IP first");
-        return;
-    }
+    const url = "https://participants-kind-pdas-database.trycloudflare.com/print";
+    ...
+    fetch(url, { ... })
+    ...
+}
     const url = `http://${ip}/StarWebPRNT/SendMessage`;
     const xml = `<root>` +
         `<text align='center' emphasis='true' width='2' height='2'>Test Print OK\\x0a</text>` +
